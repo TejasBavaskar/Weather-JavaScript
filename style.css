@@ -71,3 +71,82 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
+.future-forecast {
+  background-color: rgba(24, 24, 27, 0.7);
+  width: 100%;
+  padding: 1.5rem;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin: auto;
+  overflow-x: scroll;
+}
+
+.today-card {
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.today-card img {
+  width: 100px;
+  height: 100px;
+}
+
+.today-card .card-info{
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  
+}
+
+.today-card .card-info .day {
+  padding: 5px 15px;
+  background-color: #3c3c44;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: 300;
+}
+
+.today-card .card-info .temp {
+  padding-top: 10px;
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+.future-forecast .weather-forecast {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.weather-forecast .weather-card {
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 130px;
+  padding: 15px 0;
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-forecast .weather-card .day {
+  background-color: #3c3c44;
+  padding: 5px 15px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: 200;
+}
+
+.weather-forecast .weather-card .temp {
+  font-size:0.8rem;
+  font-weight: 200;
+  padding: 2px 8px;
+}
