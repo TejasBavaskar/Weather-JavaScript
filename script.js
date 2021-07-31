@@ -65,7 +65,12 @@ async function fetchWeatherData() {
 }
 
 function showWeatherData(data) {
-  const {humidity, pressure, wind_speed, sunrise,sunset} = data?.current;
+  setTableData(data?.current);
+  setForecastData(data?.daily);
+}
+
+function setTableData(currentData) {
+  const {humidity, pressure, wind_speed, sunrise,sunset} = currentData;
   humidityElement.innerText = `${humidity} %`;
   pressureElement.innerText = `${pressure} hPa` ;
   windSpeedElement.innerText = `${wind_speed} mt/s`;
@@ -75,4 +80,29 @@ function showWeatherData(data) {
 
   sunsetTime = window.moment(sunset*1000).format('hh:mm a');
   sunsetElement.innerText = sunsetTime;
+}
+
+function setForecastData(dailyData) {
+  console.log('Daily Data: ', dailyData);
+  const otherWeatherCardList = document.querySelectorAll('.weather-card');
+  const iconImgList = document.querySelectorAll('.weather-icon');
+  
+  dailyData.forEach((item, index) => {
+    console.log('Icon val= ', item.weather[0].icon);
+    if(index === 0) {
+      iconImgList[index].src = `http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`;
+      iconImgList[index].style.width = '150px';
+      iconImgList[index].style.height = '150px';
+      const currentWeatherCard = document.querySelector('.card-info');
+      currentWeatherCard.querySelector('.day').innerText = moment(item.dt * 1000).format('dddd');
+      currentWeatherCard.querySelectorAll('.temp')[0].innerText = `Night - ${item.feels_like.night} ${String.fromCharCode(176)} C`;
+      currentWeatherCard.querySelectorAll('.temp')[1].innerText = `Day - ${item.feels_like.day} ${String.fromCharCode(176)} C`;
+
+    } else {
+      otherWeatherCardList[index-1].querySelector('.day').innerText = moment(item.dt * 1000).format('ddd');
+      otherWeatherCardList[index-1].querySelector('.temp.night').innerText = `Night - ${item.feels_like.night} ${String.fromCharCode(176)} C`;
+      otherWeatherCardList[index-1].querySelector('.temp.day-temp').innerText = `Day - ${item.feels_like.day} ${String.fromCharCode(176)} C`;
+      iconImgList[index].src = `http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`;
+    }
+  });
 }
