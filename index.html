@@ -13,34 +13,54 @@
     <div class="current-info">
       <div class="date-container">
         <div class="time">
-          <span>12:30</span>
-          <span id="am-pm">AM</span>
+          <span id="time"></span>
+          <span id="am-pm"></span>
         </div>
+
         <div class="date">
-          Monday, 24 July
+          <span id="date"></span>
         </div>
+        
         <div class="others">
           <div class="weather-item">
             <div>Humidity</div>
-            <div>122</div>
+            <div id="humidity">122</div>
           </div>
           <div class="weather-item">
             <div>Pressure</div>
-            <div>122</div>
+            <div id="pressure">122</div>
           </div>
           <div class="weather-item">
             <div>Wind</div>
-            <div>122</div>
+            <div id="wind-speed">122</div>
+          </div>
+          <div class="weather-item">
+            <div>Sunrise</div>
+            <div id="sunrise">122</div>
+          </div>
+          <div class="weather-item">
+            <div>Sunset</div>
+            <div id="sunset">122</div>
           </div>
         </div>
       </div>
 
-      <div class="place-container">
-        <div class="timezone">
-          Asia/Kolkata
+      <div class="place-search-col">
+        <div class="place-container">
+          <div class="timezone">
+            Asia/Kolkata
+          </div>
+          <div class="place-coordinates">IN</div>
         </div>
-        <div class="place-coordinates">IN</div>
+  
+        <div class="search-container">
+          <form role="search" class="search-form">
+            <input class="search-input" type="search" id="search" placeholder="Search...">
+            <button id="search-btn" class="search-btn" type="submit">Go</button>
+          </form>
+        </div>
       </div>
+      
     </div>
   </div> 
 
@@ -98,6 +118,8 @@
       </div>
     </div>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="script.js"></script>
 </body>
 </html>
