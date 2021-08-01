@@ -70,8 +70,6 @@ body {
   border-radius: 0.7rem;
 }
 
-
-
 .search-input, .search-btn {
   height: 2.5rem;
   border: 0;
@@ -218,53 +216,67 @@ input,button {
   padding: 2px 8px;
 }
 
-@media only screen and (max-width: 430px){
+@media only screen and (max-width: 768px){
   .container {
-    padding: 20px;
+    padding: 0.5rem 1rem;
   }
 
   .current-info {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+  }
+
+  .date-container .date {
+    font-size: 1.7rem;
+  }
+
+  .others {
+    padding: 0.5rem 1rem;
   }
 
   .date-container .time {
-    font-size: 4rem;
-    font-weight: 500;
-    display: flex;
+    font-size: 3rem;
+    justify-content: center;
+  }
+  
+  .place-container {
     align-items: center;
-  }
-  
-  .date-container #am-pm {
-    font-size: 2rem;
-    font-weight: 300;
-    margin-left: 1rem;
-  }
-  
-  .date-container .date {
-    font-size: 2rem;
-    font-weight: 200;
+    margin-bottom: 0;
   }
 
-  .place-container {
-    margin-top: 0.5rem;
-  }
-  
-  .place-container .timezone {
-    font-size: 1.5rem;
-    font-weight: 200;
-  }
-  
   .place-container .city-name {
+    font-size: 1.2rem;
+  }
+
+  .place-container .timezone {
     font-size: 1rem;
-    font-weight: 700;
+  }
+
+  .search-container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-form {
+    width: 80%;
+  }
+
+  .search-input, .search-btn {
+    height: 2rem;
+    font-size: 1.2rem;
+  }
+
+  input:not(:placeholder-shown) {
+    width: calc(100% - 3rem);
+  }
+
+  button {
+    width: 3rem;
   }
 
   .future-forecast {
-    justify-content: start;
-    overflow-x: scroll;
-    height: 40%;
+    height: 37%;
   }
 }
 
