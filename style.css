@@ -277,6 +277,7 @@ input,button {
 
   .future-forecast {
     height: 37%;
+    position: fixed;
   }
 }
 
