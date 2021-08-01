@@ -44,6 +44,7 @@ body {
 .date-container .date {
   font-size: 2rem;
   font-weight: 200;
+  text-align: center;
 }
 
 .place-search-col {

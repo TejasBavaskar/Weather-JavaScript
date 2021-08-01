@@ -4,6 +4,8 @@ const WEATHER_BASE_URL = 'https://api.openweathermap.org/data/2.5/onecall';
 const WEATHER_API_KEY = 'b2aafc06eab67e4df2e33d694a4665d4';
 const BASE_GEOLOCATION_URL = 'https://us1.locationiq.com/v1/search.php';
 const GEOLOCATION_API_KEY = 'pk.52d2a9358410a86399480729eadd7197';
+const TIMEZONE_API_KEY = 'afnTwgLZEzCVdcbBhmRX';
+const TIMEZONE_BASE_URL = 'https://timezoneapi.io/api/timezone';
 
 let cityName = 'Mumbai';
 let countryName = 'India';
@@ -33,22 +35,54 @@ searchBtn.addEventListener('click', (event) => {
 initializa(cityName);
 
 function initializa(cityName) {
-  setInterval(() => {
-    const currentTime = new Date();
-    let hours = currentTime.getHours();
-    const amPm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours > 12 ? hours % 12 : hours;
-    const minutes = currentTime.getMinutes();
-    const day = days[currentTime.getDay()];
-    const month = months[currentTime.getMonth()]
-    const date = currentTime.getDate();
-  
-    timeElement.innerText = `${hours}:${minutes}`;
-    amPmElement.innerText = amPm;
-    dateElement.innerText = `${day}, ${date} ${month}`;
-  }, 1000);
-
   fetchWeatherData(cityName);
+}
+
+async function setDateTime(timezone) {
+  const url = `${TIMEZONE_BASE_URL}/timezone/?${timezone}&token=${TIMEZONE_API_KEY}`;
+  let dateTime = null;
+  await fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      dateTime = data?.data?.datetime;
+      console.log(dateTime);
+    })
+  
+  let {hour_12_wilz, minutes, hour_am_pm, day_full, day, month_abbr} = dateTime;
+  console.log(hour_12_wilz, minutes, hour_am_pm);
+
+  timeElement.innerText = `${hour_12_wilz}:${minutes}`;
+  amPmElement.innerText = hour_am_pm.toUpperCase();
+  dateElement.innerText = `${day_full}, ${day} ${month_abbr}`;
+
+  let newHours = parseInt(hour_12_wilz);
+  let newMinutes = parseInt(minutes);
+  let dayFullIndex = days.indexOf(parseInt(day_full));
+
+  setInterval(() => {
+    newMinutes++;
+    newMinutes = newMinutes % 60;
+
+    if(newMinutes === 0) {
+      newHours++;
+    }
+
+    if(newMinutes === 0 && newHours === 0) {
+      dayFullIndex = (dayFullIndex + 1)%7;
+      day_full = days[dayFullIndex];
+      day = parseInt(day)++;
+      dateElement.innerText = `${day_full}, ${day} ${month_abbr}`;
+    }
+    
+    newHours = newHours > 12 ? newHours%12 : newHours;
+    const displayHours = newHours >= 10 ? newHours : '0'+newHours;
+    const displayMinutes = newMinutes >= 10 ? newMinutes : '0'+newMinutes;
+    const amPm = newHours >= 12 ? 'PM' : 'AM';
+
+    timeElement.innerText = `${displayHours}:${displayMinutes}`;
+    amPmElement.innerText = amPm;
+
+  }, 1000 * 60);
 }
 
 
@@ -79,7 +113,7 @@ async function fetchWeatherData(cityName) {
 function showWeatherData(data) {
   setTableData(data?.current);
   setForecastData(data?.daily);
-  timezoneElement.innerText = data.timezone;
+  setDateTime(data?.timezone);
 }
 
 function setTableData(currentData) {
