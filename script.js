@@ -9,6 +9,7 @@ const TIMEZONE_BASE_URL = 'https://timezoneapi.io/api/timezone';
 
 let cityName = 'Mumbai';
 let countryName = 'India';
+let timeInterval = null;
 
 const timeElement = document.getElementById('time');
 const amPmElement = document.getElementById('am-pm');
@@ -18,7 +19,6 @@ const timezoneElement = document.querySelector('.timezone');
 const searchBtn = document.getElementById('search-btn');
 const searchBox = document.getElementById('search-box');
 const humidityElement = document.getElementById('humidity');
-const pressureElement = document.getElementById('pressure');
 const windSpeedElement = document.getElementById('wind-speed');
 const sunriseElement = document.getElementById('sunrise');
 const sunsetElement = document.getElementById('sunset');
@@ -29,7 +29,7 @@ searchBtn.addEventListener('click', (event) => {
   console.log(searchBox.value);
   initializa(searchBox.value);
   searchBox.value = '';
-
+  clearInterval(timeInterval);
 })
 
 initializa(cityName);
@@ -59,7 +59,7 @@ async function setDateTime(timezone) {
   let newMinutes = parseInt(minutes);
   let dayFullIndex = days.indexOf(parseInt(day_full));
 
-  setInterval(() => {
+  timeInterval = setInterval(() => {
     newMinutes++;
     newMinutes = newMinutes % 60;
 
@@ -79,6 +79,7 @@ async function setDateTime(timezone) {
     const displayMinutes = newMinutes >= 10 ? newMinutes : '0'+newMinutes;
     const amPm = newHours >= 12 ? 'PM' : 'AM';
 
+    console.log('Setting Time: ', `${displayHours}:${displayMinutes}`);
     timeElement.innerText = `${displayHours}:${displayMinutes}`;
     amPmElement.innerText = amPm;
 
@@ -119,7 +120,6 @@ function showWeatherData(data) {
 function setTableData(currentData) {
   const {humidity, pressure, wind_speed, sunrise,sunset, feels_like} = currentData;
   humidityElement.innerText = `${humidity} %`;
-  pressureElement.innerText = `${pressure} hPa` ;
   windSpeedElement.innerText = `${wind_speed} mt/s`;
   tempTableElement.innerText  = `${feels_like} ${String.fromCharCode(176)}C`;
 
