@@ -9,62 +9,62 @@
   <title>Weather</title>
 </head>
 <body>
-  <div class="container">
-    <div class="current-info">
-      <div class="date-container">
-        <div class="time">
-          <span id="time"></span>
-          <span id="am-pm"></span>
-        </div>
-
-        <div class="date">
-          <span id="date"></span>
-        </div>
-        
-        <div class="others">
-          <div class="weather-item">
-            <div>Temprature</div>
-            <div id="temp">122</div>
+  <div class="main-container">
+    <div class="container">
+      <div class="current-info">
+        <div class="date-container">
+          <div class="time">
+            <span id="time"></span>
+            <span id="am-pm"></span>
           </div>
-          <div class="weather-item">
-            <div>Humidity</div>
-            <div id="humidity">122</div>
+  
+          <div class="date">
+            <span id="date"></span>
           </div>
-          <div class="weather-item">
-            <div>Wind</div>
-            <div id="wind-speed">122</div>
-          </div>
-          <div class="weather-item">
-            <div>Sunrise</div>
-            <div id="sunrise">122</div>
-          </div>
-          <div class="weather-item">
-            <div>Sunset</div>
-            <div id="sunset">122</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="place-search-col">
-        <div class="place-container">
-          <div class="city-name">IN</div>
-          <div class="timezone">
-            Asia/Kolkata
+          
+          <div class="others">
+            <div class="weather-item">
+              <div>Temprature</div>
+              <div id="temp">122</div>
+            </div>
+            <div class="weather-item">
+              <div>Humidity</div>
+              <div id="humidity">122</div>
+            </div>
+            <div class="weather-item">
+              <div>Wind</div>
+              <div id="wind-speed">122</div>
+            </div>
+            <div class="weather-item">
+              <div>Sunrise</div>
+              <div id="sunrise">122</div>
+            </div>
+            <div class="weather-item">
+              <div>Sunset</div>
+              <div id="sunset">122</div>
+            </div>
           </div>
         </div>
   
-        <div class="search-container">
-          <form role="search" class="search-form">
-            <input class="search-input" type="search" id="search-box" placeholder="Search city name...">
-            <button id="search-btn" class="search-btn" type="submit">Go</button>
-          </form>
+        <div class="place-search-col">
+          <div class="place-container">
+            <div class="city-name">IN</div>
+            <div class="timezone">
+              Asia/Kolkata
+            </div>
+          </div>
+    
+          <div class="search-container">
+            <form role="search" class="search-form">
+              <input class="search-input" type="search" id="search-box" placeholder="Search city name...">
+              <button id="search-btn" class="search-btn" type="submit">Go</button>
+            </form>
+          </div>
         </div>
+        
       </div>
-      
-    </div>
-  </div> 
+    </div> 
 
-  <div class="forecast-container">
     <div class="future-forecast">
       <div class="today-card">
         <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="wather icon" class="weather-icon">
@@ -120,6 +120,9 @@
       </div>
     </div>
   </div>
+
+
+
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

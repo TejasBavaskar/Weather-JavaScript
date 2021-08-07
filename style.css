@@ -217,6 +217,12 @@ input,button {
 }
 
 @media only screen and (max-width: 768px){
+  .main-container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+  }
+
   .container {
     padding: 0.5rem 1rem;
   }
@@ -282,17 +288,6 @@ input,button {
     bottom: 0;
   }
 
-  .future-forecast {
-    height: 100%;
-    position: absolute;
-    background-color: rgba(24, 24, 27, 0.7);
-    width: 100%;
-    padding: 1.5rem;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    color: white;
-  }
 }
 
 @media only screen and (max-width: 1024px){
